@@ -1,0 +1,37 @@
+{% block content %}
+  <h2>Detalles de la solicitud</h2>
+  <hr>
+  <dl>
+    <dt>RUT</dt>
+    <dd>{{ solicitud.rut }}</dd>
+    
+    <dt>Nombre</dt>
+    <dd>{{ solicitud.nombre }} {{ solicitud.apellidos }}</dd>
+    
+    <dt>Dirección</dt>
+    <dd>{{ solicitud.direccion }}</dd>
+    
+    <dt>Teléfono</dt>
+    <dd>{{ solicitud.telefono }}</dd>
+    
+    <dt>Comuna</dt>
+    <dd>{{ solicitud.comuna }}</dd>
+    
+    <dt>Estado</dt>
+    <dd>{{ solicitud.estado|capfirst }}</dd> <!-- Convertimos el estado a formato "capitalize" -->
+
+    <dt>Fecha de Solicitud</dt>
+    <dd>{{ solicitud.fecha_solicitud|date:"d M Y, h:i a" }}</dd>
+
+    <dt>Fecha de Aceptación</dt>
+    <dd>
+      {% if solicitud.fecha_aceptacion %}
+        {{ solicitud.fecha_aceptacion|date:"d M Y, h:i a" }}
+      {% else %}
+        No disponible
+      {% endif %}
+    </dd>
+  </dl>
+  
+  <a class="btn btn-secondary" href="{% url 'listar' %}">Volver a la lista</a>
+{% endblock %}

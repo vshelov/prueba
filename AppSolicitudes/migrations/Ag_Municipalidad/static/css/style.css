@@ -1,0 +1,51 @@
+.login {
+    height: 200px;
+    text-align: center;
+}
+
+
+.navbar {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.gobierno {
+    height: 200px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: white; /* Cambiar el color del texto */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Animación suave */
+}
+
+/* Agregar transición para suavizar el cambio de color */
+.dropdown-menu .dropdown-item {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Animación */
+}
+
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #0e8eff; /* Color celeste suave */
+    color: white;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.dropdown-menu .dropdown-item {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: white;
+    transform: scale(1.1); /* Aumenta el tamaño en un 10% */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.dropdown-menu .dropdown-item {
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.dropdown-menu .dropdown-item {
+    padding: 8px 12px;  /* Ajustar el padding para que el texto esté bien alineado */
+    border-radius: 4px; /* Borde redondeado para evitar que el cuadro sobresalga */
+    overflow: hidden;   /* Ocultar cualquier contenido que sobresalga */
+}

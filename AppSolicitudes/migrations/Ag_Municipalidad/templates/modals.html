@@ -1,0 +1,75 @@
+<!-- Modal de Detalles -->
+<div class="modal fade" id="detalleModal{{ solicitud.id }}" tabindex="-1" aria-labelledby="detalleModalLabel{{ solicitud.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detalleModalLabel{{ solicitud.id }}">Detalles de la solicitud</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>RUT:</strong> {{ solicitud.rut }}</p>
+                <p><strong>Nombre:</strong> {{ solicitud.nombre }} {{ solicitud.apellidos }}</p>
+                <p><strong>Dirección:</strong> {{ solicitud.direccion }}</p>
+                <p><strong>Teléfono:</strong> {{ solicitud.telefono }}</p>
+                <p><strong>Comuna:</strong> {{ solicitud.comuna }}</p>
+                <p><strong>Estado:</strong> {{ solicitud.estado }}</p>
+                <p><strong>Fecha de Solicitud:</strong> {{ solicitud.fecha_solicitud }}</p>
+                {% if solicitud.fecha_aceptacion %}
+                    <p><strong>Fecha de Aceptación:</strong> {{ solicitud.fecha_aceptacion }}</p>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Confirmación de Eliminación -->
+<div class="modal fade" id="eliminarModal{{ solicitud.id }}" tabindex="-1" aria-labelledby="eliminarModalLabel{{ solicitud.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eliminarModalLabel{{ solicitud.id }}">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar la solicitud de <strong>{{ solicitud.nombre }} {{ solicitud.apellidos }}</strong> con RUT <strong>{{ solicitud.rut }}</strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <form method="POST" action="{% url 'eliminar_solicitud' solicitud.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Editar Estado -->
+<div class="modal fade" id="editarModal{{ solicitud.id }}" tabindex="-1" aria-labelledby="editarModalLabel{{ solicitud.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarModalLabel{{ solicitud.id }}">Editar Estado de la Solicitud</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'editar_estado_solicitud' solicitud.id %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select class="form-select" id="estado" name="estado" required>
+                            <option value="pendiente" {% if solicitud.estado == 'pendiente' %}selected{% endif %}>Pendiente</option>
+                            <option value="aceptada" {% if solicitud.estado == 'aceptada' %}selected{% endif %}>Aceptada</option>
+                            <option value="rechazada" {% if solicitud.estado == 'rechazada' %}selected{% endif %}>Rechazada</option>
+                            <option value="expirada" {% if solicitud.estado == 'expirada' %}selected{% endif %}>Expirada</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
